@@ -1,0 +1,55 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: shpride
+      MYSQL_USER: shpride-service
+      MYSQL_PASSWORD: shpride2020
+    networks:
+      - wordpress-net
+  
+  phpmyadmin:
+    depends_on:
+    - db
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - '8080:80'
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: password 
+    networks:
+      - wordpress-net
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress:latest
+    ports:
+      - "8000:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: shpride-service
+      WORDPRESS_DB_PASSWORD: shpride2020
+      WORDPRESS_DB_NAME: shpride
+      WORDPRESS_DEBUG: 1
+    volumes:
+      - wpcontent:/var/www/html/wp-content
+      - ./conf/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./app:/var/www/html/wp-content/themes/shpride
+    network:
+      - wordpress-net
+
+networks:
+  wordpress-net
+
+volumes:
+  db: {}
+  wpcontent: {}
