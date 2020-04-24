@@ -9,7 +9,9 @@
 3. Develop your "theme" for wordpress within the `app` directory
 
 ## Future To-Do
-- Add boilerplate theme configurations in the `app` folder
-- Integrate gulp.babel workflow with ES6
-- Autoselect the "app" theme when WP is initiated
-- Investigate plugins
+
+- [x] Add boilerplate theme configurations in the `app` folder
+- [x] Integrate gulp.babel workflow with ES6
+- [ ] Autoselect the "app" theme when WP is initiated
+- [ ] Investigate plugins
+- [ ] Decide whether to use the current auto-generated theme or re-prepare with Foundation SCSS.
