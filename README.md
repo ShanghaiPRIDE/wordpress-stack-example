@@ -15,3 +15,4 @@
 - [ ] Autoselect the "app" theme when WP is initiated
 - [ ] Investigate plugins
 - [ ] Decide whether to use the current auto-generated theme or re-prepare with Foundation SCSS.
+- [ ] Add SCSS compilation to build and remove `style.css` from source control.
